@@ -1,0 +1,10 @@
+[package]
+name = "learn_rust"
+version = "0.1.0"
+edition = "2024"
+
+[[bin]]
+name="guessing_main"
+path="bin/guessing_game.rs"
+[dependencies]
+rand = "0.9.2"
