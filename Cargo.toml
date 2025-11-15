@@ -5,6 +5,11 @@ edition = "2024"
 
 [[bin]]
 name="guessing_main"
-path="bin/guessing_game.rs"
+path="src/bin/guessing_game.rs"
+
+[[bin]]
+name="stack_application"
+path="src/bin/stack_application.rs"
+
 [dependencies]
 rand = "0.9.2"
