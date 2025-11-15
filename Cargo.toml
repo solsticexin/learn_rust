@@ -11,5 +11,9 @@ path="src/bin/guessing_game.rs"
 name="stack_application"
 path="src/bin/stack_application.rs"
 
+[[bin]]
+name="minigrep"
+path="src/bin/minigrep.rs"
+
 [dependencies]
 rand = "0.9.2"
