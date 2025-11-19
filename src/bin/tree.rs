@@ -1,10 +1,11 @@
-use std::{collections::VecDeque, ops::Deref};
+use std::{collections::VecDeque, fmt::Display, ops::Deref};
 
 type TreeNode<T>=Option<Box<Node<T>>>;
 fn main() {
     println!("Hello Tree");
 }
 
+#[derive(Debug,Default)]
 struct Node<T> {
     data: T,
     left: Option<Box<Node<T>>>,
@@ -17,22 +18,27 @@ impl<T> Node<T> {
    
 }
 //处理节点
-    fn visit<T>(node:&mut Box<Node<T>>){
+    fn visit<T>(node:&mut Box<Node<T>>)
+    where 
+        T:std::fmt::Debug+Display
+    {
          println!("Visiting node:{}", node.data);
     } 
-    fn level_order_traversal<T>(tree:TreeNode<T>){
+    fn level_order_traversal<T>(tree:TreeNode<T>)
+    where T:std::fmt::Debug+Display+Clone
+    {
         let mut queue=VecDeque::new();
         //根节点入队
         if let mut node =tree.unwrap()  {
-            queue.push_back(&mut node);
+            queue.push_back(node);
         }
         while !queue.is_empty() {
-            let node=queue.pop_front().unwrap();
-            visit(node);
-            if let node = &mut node.left.unwrap()  {
+            let mut node=queue.pop_front().unwrap();
+            visit(&mut node);
+            if let mut node =node.left.unwrap().clone()  {
                 queue.push_back(node);
             }
-            if let node =&mut node.right.unwrap() {
+            if let node =node.right.unwrap() {
                 queue.push_back(node);
             }
         }

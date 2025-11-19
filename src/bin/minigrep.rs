@@ -10,15 +10,15 @@ fn main(){
     // let file_path=&args[2];
     // let config=parse_config(&args);
     let config=Config::build(&args).unwrap_or_else(|err|{
-        println!("Problem parsing arguments {err}");
+        eprintln!("Problem parsing arguments {err}");
         process::exit(1);
     });
-    println!("query:{:?},file_path:{:?}",config.query,config.file_path);
+    // println!("query:{:?},file_path:{:?}",config.query,config.file_path);
     // let contents=fs::read_to_string(config.file_path).expect("no search file");
     // println!("with test:\n{contents}");
     // run(config);
     if let Err(e) = learn_rust::run(config) {
-        println!("application error:{e}");
+        eprintln!("application error:{e}");
         process::exit(1);
     }
 }
