@@ -20,7 +20,7 @@ name="tree"
 path="src/bin/tree.rs"
 
 [[bin]]
-name="13.1"
+name="13_1"
 path="src/bin/13.1.rs"
 
 # [[bin]]
