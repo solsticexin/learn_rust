@@ -15,6 +15,44 @@ struct Tree {
     l_tag: bool,
     r_tag: bool,
 }
+fn create_pre_thread(root: *mut Tree) {
+    if !root.is_null() {
+        let mut pre: *mut Tree = null_mut();
+        pre_thread(root, &mut pre);
+    }
+}
+fn pre_thread(current: *mut Tree, pre: &mut *mut Tree) {
+    if current.is_null() {
+        return;
+    }
+    visit_pre(current, pre);
+    pre_thread(unsafe { (*current).left }, pre);
+    pre_thread(unsafe { (*current).right }, pre);
+}
+fn visit_pre(current: *mut Tree, pre: &mut *mut Tree) {
+    if current.is_null() {
+        return;
+    }
+    if unsafe { (*current).left.is_null() } {
+        unsafe {
+            (*current).left = *pre;
+            (*current).l_tag = true;
+        }
+    }
+    unsafe {
+        // if !(*pre).is_null() {
+        //     if (*(*pre)).right.is_null() {
+        //         (*(*pre)).right = current;  // 前驱的后继是当前节点
+        //         (*(*pre)).r_tag = true;
+        //     }
+        // }
+        if (*(*pre)).right.is_null() {
+            (**pre).right = current;
+            (**pre).r_tag = true;
+        }
+        *pre = current;
+    }
+}
 fn create_in_thread(root: *mut Tree) {
     if root.is_null() {
         return;
