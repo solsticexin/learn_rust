@@ -1,3 +1,8 @@
+pub mod tree;
+
+
+
+
 use std::{env, fs};
 use std::error::Error;
 pub struct Config{

@@ -15,9 +15,9 @@ path="src/bin/stack_application.rs"
 name="minigrep"
 path="src/bin/minigrep.rs"
 
-[[bin]]
-name="tree"
-path="src/bin/tree.rs"
+#[[bin]]
+#name="tree"
+#path="src/bin/tree.rs"
 
 [[bin]]
 name="13_1"

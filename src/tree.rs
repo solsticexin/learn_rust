@@ -3,11 +3,11 @@
 use std::ptr::null_mut;
 
 // type TreeNode<T>=Option<Box<Node<T>>>;
-fn main() {
-    println!("Hello Tree");
-}
+// fn main() {
+//     println!("Hello Tree");
+// }
 
-struct Tree {
+pub struct Tree {
     data: i32,
     left: *mut Tree,
     right: *mut Tree,
@@ -15,13 +15,19 @@ struct Tree {
     l_tag: bool,
     r_tag: bool,
 }
-fn create_pre_thread(root: *mut Tree) {
+pub fn get_data(node:*mut Tree,data:i32){
+    unsafe{
+        (*node).data=data;
+    }
+}
+
+pub fn create_pre_thread(root: *mut Tree) {
     if !root.is_null() {
         let mut pre: *mut Tree = null_mut();
         pre_thread(root, &mut pre);
     }
 }
-fn pre_thread(current: *mut Tree, pre: &mut *mut Tree) {
+pub fn pre_thread(current: *mut Tree, pre: &mut *mut Tree) {
     if current.is_null() {
         return;
     }
@@ -29,7 +35,7 @@ fn pre_thread(current: *mut Tree, pre: &mut *mut Tree) {
     pre_thread(unsafe { (*current).left }, pre);
     pre_thread(unsafe { (*current).right }, pre);
 }
-fn visit_pre(current: *mut Tree, pre: &mut *mut Tree) {
+pub fn visit_pre(current: *mut Tree, pre: &mut *mut Tree) {
     if current.is_null() {
         return;
     }
@@ -53,7 +59,7 @@ fn visit_pre(current: *mut Tree, pre: &mut *mut Tree) {
         *pre = current;
     }
 }
-fn create_in_thread(root: *mut Tree) {
+pub fn create_in_thread(root: *mut Tree) {
     if root.is_null() {
         return;
     }
@@ -67,7 +73,7 @@ fn create_in_thread(root: *mut Tree) {
         }
     }
 }
-fn in_thread(current: *mut Tree, pre_ptr: &mut *mut Tree) {
+pub fn in_thread(current: *mut Tree, pre_ptr: &mut *mut Tree) {
     if current == null_mut() {
         return;
     }

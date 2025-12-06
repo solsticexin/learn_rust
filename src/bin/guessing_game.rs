@@ -1,10 +1,11 @@
 use std::{cmp::Ordering, io};
+use rand::random_range;
 fn main() {
     println!("Guess the number!!");
     
 
     //生成随机数
-    let secret_number=rand::random_range(1..=100);
+    let secret_number=random_range(1..=100);
     loop {
         println!("Please input your gues.");
         let mut guess=String::new();
