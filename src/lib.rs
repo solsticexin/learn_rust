@@ -1,3 +1,4 @@
+pub mod graph;
 pub mod tree;
 pub mod union_find;
 
